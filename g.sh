@@ -43,12 +43,14 @@ function _so {
     git stash pop
 }
 function _sp {
+    N=${2:-*}
     git add -u && git commit -n -m "*"
-    git format-patch HEAD~1 --stdout > tmp/$2.patch
+    git format-patch HEAD~1 --stdout > tmp/$N.patch
     git reset --hard HEAD^
 }
 function _sa {
-    git am -3 < $2
+    N=${2:-*}
+    git am -3 < $N
 }
 # commit
 function _a {
