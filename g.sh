@@ -92,9 +92,18 @@ function _jr {
 }
 function _pb {
     R=${2:-origin}
-    git push -u $R `git rev-parse --abbrev-ref HEAD`
+    BRANCH=$(git rev-parse --abbrev-ref HEAD)
+    if [ "$BRANCH" == "master" ]; then
+        echo "Refusing to run on master"; exit 1;
+    fi
+    git push -u $R $BRANCH
 }
 function _pf {
+    BRANCH=$(git rev-parse --abbrev-ref HEAD)
+    if [ "$BRANCH" == "master" ]; then
+        echo "Refusing to run on master"; exit 1;
+
+    fi
     git push -f
 }
 # undo
