@@ -23,6 +23,9 @@ function _b {
 function _x {
     git branch -D $2
 }
+function _xs {
+    git branch --merged >/tmp/merged-branches && vim /tmp/merged-branches && xargs git branch -d </tmp/merged-branches
+}
 function _ch {
     git checkout $2 2>/dev/null || git checkout -b $2
 }
