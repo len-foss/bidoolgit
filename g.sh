@@ -54,7 +54,12 @@ function _sa {
 }
 # commit
 function _a {
-    git add -u
+    if [ $# -le 1 ]
+      then
+        git add -u
+      else
+        git add "${@:2}"
+    fi
 }
 function _aa {
     git add .
