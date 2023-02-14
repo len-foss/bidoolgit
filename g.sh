@@ -60,7 +60,7 @@ function _aa {
     git add .
 }
 function _ap {
-    git add -p
+    git add -p "${*:2}"
 }
 function _r {
     git rebase -i HEAD~$2
