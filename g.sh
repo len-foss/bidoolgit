@@ -74,6 +74,9 @@ function _rr {
     R=${2:-origin/master}
     git rebase $R
 }
+function _cm {
+    git commit
+}
 function _c {
     git commit -m "*"
 }
