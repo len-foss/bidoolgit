@@ -103,6 +103,10 @@ function _pb {
     fi
     git push -u $R $BRANCH
 }
+function _p {
+    BRANCH=$(git rev-parse --abbrev-ref HEAD)
+    git push
+}
 function _pf {
     BRANCH=$(git rev-parse --abbrev-ref HEAD)
     if [ "$BRANCH" == "master" ]; then
