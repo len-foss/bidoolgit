@@ -78,7 +78,12 @@ function _cm {
     git commit
 }
 function _c {
-    git commit -m "*"
+    if [ $# -le 1 ]
+      then
+        git commit -m "*"
+      else
+        git commit -m "${*:2}"
+    fi
 }
 function _am {
     git commit --amend
