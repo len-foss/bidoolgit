@@ -80,6 +80,11 @@ function _rr {
     R=${2:-origin/master}
     git rebase $R
 }
+function _rs {
+    R=${2:-origin}
+    BRANCH=$(git rev-parse --abbrev-ref HEAD)
+    git rebase $R/$BRANCH
+}
 function _cm {
     git commit
 }
