@@ -17,8 +17,12 @@ function _dr {
     git reset
 }
 # branches
-function _b {
-    git branch -a
+function _b { # branches; show them by modification date
+    # from https://stackoverflow.com/questions/2514172/listing-each-branch-and-its-last-revisions-date-in-git/2514279
+    for k in $(git branch | sed s/^..//); do echo -e $(git log --color=always -1 --pretty=format:"%Cgreen%ci %Cblue%cr%Creset" $k --)\\t"$k";done | sort
+}
+function _ba {  # branch all
+    for k in $(git branch -r | perl -pe 's/^..(.*?)( ->.*)?$/\1/'); do echo -e $(git show --pretty=format:"%Cgreen%ci %Cblue%cr%Creset" $k -- | head -n 1)\\t$k; done | sort -r
 }
 function _x {
     git branch -D $2
