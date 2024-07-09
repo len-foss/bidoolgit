@@ -1,5 +1,10 @@
 #!/bin/bash
 
+
+function _cfg {
+    git config -e
+}
+
 # status
 function _s {
     git status
