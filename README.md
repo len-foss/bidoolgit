@@ -34,6 +34,13 @@ Copy the `g.sh` script in a folder on your path as `g`.
 Make sure it is executable, using `chmod +x` if needed.
 In Ubuntu, `~/bin` is on your path, in doubt check with `echo $PATH`.
 
+Another approach, to keep the file under its git repo, is to put in your path a `g` file with content:
+```bash
+#!/bin/bash
+bash ~/src/bidoolgit/g.sh "$@"
+```
+So that the script is always up-to-date.
+
 ## Usage
 
 ### status
@@ -43,8 +50,8 @@ To check the last commit, use `g sh`.
 
 ### branches
 To checkout or create a branch, use `g ch $BRANCHNAME`.
-To list all branches, use `g b`.
-To delete a branch, use `g x BRANCHNAME`.
+To list all local branches, use `g b`; to list all branches, use `g ba`.
+To delete a branch, use `g x $BRANCHNAME`.
 
 ### commit
 To stage all changes, use `g a`.
@@ -109,3 +116,22 @@ If there is a diff, run the absorb phase again as needed.
 
 In case absorb failed to rebase, you can rebase with `g jr`
 (by default on `origin/master`, you can specify an optional base).
+
+## configuration and multiple git identities
+
+The standard approach to manage multiple git identities is to use separate folders for each one.
+Typically, the `.gitconfig` should contain something of the form: 
+```bash
+[includeIf "gitdir:~/src_gid/"]
+	path = ~/src_gid/.gitconfig
+```
+Then in `.ssh/config` you can specify the identity file to use:
+```bash
+Host githubgid.com
+    HostName github.com
+    User git
+    IdentityFile ~/.ssh/id_rsa_gid
+```
+The command `g cl` will clone the repository while setting the right host if the file `.githubhost` is present with content `gid` (the file is named `githubhost` but there is nothing tied to github, it works the same with Gitea or Gitlab).
+
+You can check the current configuration (in edit mode) with `g cfg`.
