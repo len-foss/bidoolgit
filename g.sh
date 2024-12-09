@@ -108,9 +108,11 @@ function _c {
 function _am {
     git commit --amend
 }
+
 function _cp {
-    git cherry-pick $2
+    git cherry-pick -x $2
 }
+
 function _j {
     git absorb --and-rebase
 }
