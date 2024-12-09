@@ -21,6 +21,12 @@ function _dc {
 function _dr {
     git reset
 }
+
+# submodules
+function _sm {
+    git submodule update --init --depth 1
+}
+
 # branches
 function _b { # branches; show them by modification date
     # from https://stackoverflow.com/questions/2514172/listing-each-branch-and-its-last-revisions-date-in-git/2514279
