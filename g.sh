@@ -5,6 +5,20 @@ function _cfg {
     git config -e
 }
 
+# abort anything
+function _ab {
+    if git status | grep -qE "(cherry-pick|merge|rebase) --abort"; then
+        git $(git status | grep -oE "(cherry-pick|merge|rebase) --abort")
+    fi
+}
+
+# continue anything
+function _ct {
+    if git status | grep -qE "(cherry-pick|merge|rebase) --continue"; then
+        git $(git status | grep -oE "(cherry-pick|merge|rebase) --continue")
+    fi
+}
+
 # status
 function _s {
     git status
