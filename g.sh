@@ -10,7 +10,7 @@ function _s {
     git status
 }
 function _sh {
-    git show
+    git show "${@:2}"
 }
 function _d {
     git diff
