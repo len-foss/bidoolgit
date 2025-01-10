@@ -130,6 +130,9 @@ function _am {
 }
 
 function _cp {
+    git cherry-pick $2
+}
+function _cpx {
     git cherry-pick -x $2
 }
 
